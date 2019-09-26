@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,5 +15,18 @@ namespace NoticiasApiProject.Models
         public string Contenido { get; set; }
         public DateTime Fecha { get; set; }
         public int AutorId { get; set; }
+        public Autor Autor { get; set; }
+
+        public class Mapeo
+        {
+            public Mapeo(EntityTypeBuilder<Noticia> mapeoNoticia )
+            {
+                mapeoNoticia.HasKey(x => x.NoticiaID);
+                mapeoNoticia.Property(x => x.Titulo).HasColumnName("Titulo");
+                mapeoNoticia.Property(x => x.Descripcion).HasColumnName("Descripcion");
+                mapeoNoticia.ToTable("Noticia");
+                mapeoNoticia.HasOne(x => x.Autor);
+            }
+        }
     }
 }

@@ -14,8 +14,8 @@ namespace NoticiasApiProject.DbContextFiles
 
         }
 
-        DbSet<Noticia> Noticia { get; set; }
-        DbSet<Autor> Autor { get; set; }
+        public DbSet<Noticia> Noticia { get; set; }
+        public DbSet<Autor> Autor { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
